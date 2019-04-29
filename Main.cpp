@@ -137,8 +137,8 @@ void splashScreen()
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glColor3f(1.0, 1.0, 1.0);
 	drawString(-355, 120, 300, "R A N D O M  T E R R A I N    G E N E R A T O R   U S I N G   O P E N G L");
-	drawString(-290, 0, 300, "S H A N A K R   A N B A L A G A N - 1 R N 1 6 C S 0 9 3");
-	drawString(-300, 40, 300, "S H I V A N K   K U M A R - 1 R N 1 6 C S 1 0 0");
+	drawString(-300, 40, 300, "S H A N A K R   A N B A L A G A N - 1 R N 1 6 C S 0 9 3");
+	drawString(-270, 0, 300, "S H I V A N K   K U M A R - 1 R N 1 6 C S 1 0 0");
 	glColor3f(1.0, 0.0, 1.0);
 	drawString(-370, -300, 300, "P R E S S   G   T O   P R O C E D U R A L L Y   G E N E R A T E   A   T E R R A I N");
 	glutSwapBuffers();
