@@ -37,7 +37,7 @@ point mesh[SIZE + 1][SIZE + 1];
 int angleX = 0, angleY = 0, angleZ = 0;
 double zoom = 1;
 
-//Functions
+//Function declarations
 void display();
 void myReshape(int w, int h);
 void keyboard(unsigned char key, int mousex, int mousey);
@@ -71,6 +71,7 @@ int main(int argc, char** argv)
 
 
 //Reshape Function
+//This fucntion prevents the image/objects from being distorted when display window is reshaped
 void myReshape(int w, int h)
 {
 	float winsize = w < h ? w : h;
@@ -81,7 +82,8 @@ void myReshape(int w, int h)
 	glMatrixMode(GL_MODELVIEW);
 }
 
-//Keyboard Project
+//Keyboard function
+//This function is used for rotating the terrain and zooming functions
 void keyboard(unsigned char key, int mousex, int mousey)
 {
 	if (key == 'D' || key == 'd')
@@ -119,13 +121,14 @@ void keyboard(unsigned char key, int mousex, int mousey)
 }
 
 //DrawString Function
+//This function prints string on the display window
 void drawString(float x, float y, float z, const char* String)
 {
 	glRasterPos3f(x, y, z);
 	int i;
 	for (i = 0; i < strlen(String); i++)
 	{
-		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_10, String[i]);
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, String[i]);
 	}
 }
 
@@ -136,11 +139,12 @@ void splashScreen()
 	glutSwapBuffers();
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glColor3f(1.0, 1.0, 1.0);
-	drawString(-355, 120, 300, "R A N D O M  T E R R A I N    G E N E R A T O R   U S I N G   O P E N G L");
-	drawString(-300, 40, 300, "S H A N A K R   A N B A L A G A N - 1 R N 1 6 C S 0 9 3");
-	drawString(-270, 0, 300, "S H I V A N K   K U M A R - 1 R N 1 6 C S 1 0 0");
+	drawString(-410, 150, 300, "R A N D O M  T E R R A I N    G E N E R A T O R");
+	drawString(-430, 40, 300, "S H A N A K R   A N B A L A G A N - 1 R N 1 6 C S 0 9 3");
+	drawString(-370, 0, 300, "S H I V A N K   K U M A R - 1 R N 1 6 C S 1 0 0");
 	glColor3f(1.0, 0.0, 1.0);
-	drawString(-370, -300, 300, "P R E S S   G   T O   P R O C E D U R A L L Y   G E N E R A T E   A   T E R R A I N");
+	drawString(-380, -300, 300, "P R E S S   G   T O   P R O C E D U R A L L Y");
+	drawString(-300, -340, 300, "G E N E R A T E   A   T E R R A I N");
 	glutSwapBuffers();
 }
 
@@ -233,7 +237,8 @@ void diamondSquare(index a, index b, index c, index d, int iteration)
 		diamondCenter.j = abMid.j;
 		srand(time(NULL));
 
-		mesh[diamondCenter.i][diamondCenter.j].y = (mesh[abMid.i][abMid.j].y + mesh[bcMid.i][bcMid.j].y + mesh[cdMid.i][cdMid.j].y + mesh[daMid.i][daMid.j].y) / 4.0 - rand() % 30;
+		mesh[diamondCenter.i][diamondCenter.j].y = (mesh[abMid.i][abMid.j].y + mesh[bcMid.i][bcMid.j].y + 
+			mesh[cdMid.i][cdMid.j].y + mesh[daMid.i][daMid.j].y) / 4.0 - rand() % 30;
 
 		diamondSquare(a, abMid, diamondCenter, daMid, iteration / 2);
 		diamondSquare(abMid, b, bcMid, diamondCenter, iteration / 2);
@@ -277,7 +282,6 @@ void drawMesh()
 			if (flagMesh == 0)
 			{
 				glBegin(GL_POLYGON);
-
 				holder.i = i; holder.j = j + 1;
 				setColor(holder);
 				glColor3fv(mesh[i][j + 1].pointColor);
@@ -288,10 +292,12 @@ void drawMesh()
 				glColor3fv(mesh[i + 1][j + 1].pointColor);
 				glVertex3f(mesh[i + 1][j + 1].x, mesh[i + 1][j + 1].y, mesh[i + 1][j + 1].z);
 
+
 				holder.i = i + 1; holder.j = j;
 				setColor(holder);
 				glColor3fv(mesh[i + 1][j].pointColor);
 				glVertex3f(mesh[i + 1][j].x, mesh[i + 1][j].y, mesh[i + 1][j].z);
+
 
 				holder.i = i; holder.j = j;
 				setColor(holder);
